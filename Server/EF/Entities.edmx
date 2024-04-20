@@ -1,0 +1,1911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище RealEstateAgency_MakhanovModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="IdAgent" />
+          </Key>
+          <Property Name="IdAgent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="IdUser" Type="int" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="Birthday" Type="date" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="OrganisationName" Type="nvarchar" MaxLength="100" />
+          <Property Name="INN" Type="nchar" MaxLength="10" />
+          <Property Name="KPP" Type="nchar" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="Developer">
+          <Key>
+            <PropertyRef Name="IdDeveloper" />
+          </Key>
+          <Property Name="IdDeveloper" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="LivingProperty">
+          <Key>
+            <PropertyRef Name="IdLivingProperty" />
+          </Key>
+          <Property Name="IdLivingProperty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProperty" Type="int" Nullable="false" />
+          <Property Name="IdLivingPropertyType" Type="int" Nullable="false" />
+          <Property Name="SharedAreaSquareMeters" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="LivingAreaSquareMeters" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="KitchenAreaSquareMeters" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="RoomQuantity" Type="int" Nullable="false" />
+          <Property Name="CeilingHeight" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FloorNumber" Type="int" />
+          <Property Name="FloorsAmount" Type="int" Nullable="false" />
+          <Property Name="HasHeating" Type="bit" Nullable="false" />
+          <Property Name="HasParking" Type="bit" Nullable="false" />
+          <Property Name="BathroomQuantity" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LivingPropertyType">
+          <Key>
+            <PropertyRef Name="IdLivingPropertyType" />
+          </Key>
+          <Property Name="IdLivingPropertyType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NonLivingProperty">
+          <Key>
+            <PropertyRef Name="IdNonLivingProperty" />
+          </Key>
+          <Property Name="IdNonLivingProperty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProperty" Type="int" Nullable="false" />
+          <Property Name="IdNonLivingPropertyType" Type="int" Nullable="false" />
+          <Property Name="AreaSquareMeters" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ParkingSpaces" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NonLivingPropertyType">
+          <Key>
+            <PropertyRef Name="IdNonLivingProperty" />
+          </Key>
+          <Property Name="IdNonLivingProperty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentPeriod">
+          <Key>
+            <PropertyRef Name="IdPaymentPeriod" />
+          </Key>
+          <Property Name="IdPaymentPeriod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Days" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="IdProperty" />
+          </Key>
+          <Property Name="IdProperty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="IdPropertyLocation" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyImage">
+          <Key>
+            <PropertyRef Name="IdPropertyImage" />
+          </Key>
+          <Property Name="IdPropertyImage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProperty" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="2048" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyLocation">
+          <Key>
+            <PropertyRef Name="IdPropertyLocation" />
+          </Key>
+          <Property Name="IdPropertyLocation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="City" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="100" />
+          <Property Name="House" Type="nvarchar" MaxLength="75" />
+          <Property Name="YearBuilt" Type="int" Nullable="false" />
+          <Property Name="Floors" Type="int" Nullable="false" />
+          <Property Name="HasElevator" Type="bit" Nullable="false" />
+          <Property Name="IdDeveloper" Type="int" />
+        </EntityType>
+        <EntityType Name="PropertyLocationImage">
+          <Key>
+            <PropertyRef Name="IdPropertyLocationImage" />
+          </Key>
+          <Property Name="IdPropertyLocationImage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPropertyLocation" Type="int" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="2048" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyTag">
+          <Key>
+            <PropertyRef Name="IdProperty" />
+            <PropertyRef Name="IdTag" />
+          </Key>
+          <Property Name="IdProperty" Type="int" Nullable="false" />
+          <Property Name="IdTag" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyTransaction">
+          <Key>
+            <PropertyRef Name="IdPropertyTransaction" />
+          </Key>
+          <Property Name="IdPropertyTransaction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdClientBuyer" Type="int" Nullable="false" />
+          <Property Name="IdPurchasableProperty" Type="int" />
+          <Property Name="IdRentalProperty" Type="int" />
+          <Property Name="IsMortgaged" Type="bit" Nullable="false" />
+          <Property Name="DateClosure" Type="date" Nullable="false" />
+          <Property Name="IdAgent" Type="int" />
+        </EntityType>
+        <EntityType Name="PurchasableProperty">
+          <Key>
+            <PropertyRef Name="IdPurchasableProperty" />
+          </Key>
+          <Property Name="IdPurchasableProperty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProperty" Type="int" Nullable="false" />
+          <Property Name="IdClientOwner" Type="int" />
+          <Property Name="IdRealtor" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Realtor">
+          <Key>
+            <PropertyRef Name="IdRealtor" />
+          </Key>
+          <Property Name="IdRealtor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RentalProperty">
+          <Key>
+            <PropertyRef Name="IdRentalProperty" />
+          </Key>
+          <Property Name="IdRentalProperty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProperty" Type="int" Nullable="false" />
+          <Property Name="IdClientOwner" Type="int" />
+          <Property Name="IdRealtor" Type="int" />
+          <Property Name="Rent" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdPaymentPeriod" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="IdTag" />
+          </Key>
+          <Property Name="IdTag" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="75" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "RealEstateAgency_Makhanov.dbo.AgentSaleView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="AgentSaleView">
+          <Key>
+            <PropertyRef Name="AgentName" />
+            <PropertyRef Name="DateClosure" />
+            <PropertyRef Name="TypeTransaction" />
+            <PropertyRef Name="BuyerName" />
+          </Key>
+          <Property Name="IdAgent" Type="int" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="227" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="75" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateClosure" Type="date" Nullable="false" />
+          <Property Name="TypeTransaction" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="PaymentForProperty" Type="nvarchar" MaxLength="62" />
+          <Property Name="BuyerName" Type="nvarchar" MaxLength="227" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "RealEstateAgency_Makhanov.dbo.AvailiblePropertyView" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="AvailiblePropertyView">
+          <Property Name="IdProperty" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="100" />
+          <Property Name="PaymentForProperty" Type="nvarchar" MaxLength="62" />
+        </EntityType>-->
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "RealEstateAgency_Makhanov.dbo.PropertyView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="PropertyView">
+          <Key>
+            <PropertyRef Name="HasElevator" />
+            <PropertyRef Name="Adress" />
+          </Key>
+          <Property Name="IdProperty" Type="int" />
+          <Property Name="PropertyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="PropertyDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="PropertyLocationName" Type="nvarchar" MaxLength="150" />
+          <Property Name="PropertyLocationDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="YearBuilt" Type="int" />
+          <Property Name="Floors" Type="int" />
+          <Property Name="HasElevator" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="AreaSquareMeters" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="LivingNonLivingType" Type="nvarchar" MaxLength="75" />
+          <Property Name="ParkingSpaces" Type="int" />
+          <Property Name="LivingAreaSquareMeters" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="KitchenAreaSquareMeters" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="RoomQuantity" Type="int" />
+          <Property Name="CeilingHeight" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="FloorNumber" Type="int" />
+          <Property Name="BathroomQuantity" Type="tinyint" />
+          <Property Name="Adress" Type="nvarchar" MaxLength="254" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Agent_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agent_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LivingProperty_LivingPropertyType">
+          <End Role="LivingPropertyType" Type="Self.LivingPropertyType" Multiplicity="1" />
+          <End Role="LivingProperty" Type="Self.LivingProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LivingPropertyType">
+              <PropertyRef Name="IdLivingPropertyType" />
+            </Principal>
+            <Dependent Role="LivingProperty">
+              <PropertyRef Name="IdLivingPropertyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LivingProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="LivingProperty" Type="Self.LivingProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="LivingProperty">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NonLivingProperty_NonLivingPropertyType">
+          <End Role="NonLivingPropertyType" Type="Self.NonLivingPropertyType" Multiplicity="1" />
+          <End Role="NonLivingProperty" Type="Self.NonLivingProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NonLivingPropertyType">
+              <PropertyRef Name="IdNonLivingProperty" />
+            </Principal>
+            <Dependent Role="NonLivingProperty">
+              <PropertyRef Name="IdNonLivingPropertyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NonLivingProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="NonLivingProperty" Type="Self.NonLivingProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="NonLivingProperty">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_PropertyLocation">
+          <End Role="PropertyLocation" Type="Self.PropertyLocation" Multiplicity="1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyLocation">
+              <PropertyRef Name="IdPropertyLocation" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="IdPropertyLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyImage_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="PropertyImage" Type="Self.PropertyImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="PropertyImage">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyLocation_Developer">
+          <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
+          <End Role="PropertyLocation" Type="Self.PropertyLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developer">
+              <PropertyRef Name="IdDeveloper" />
+            </Principal>
+            <Dependent Role="PropertyLocation">
+              <PropertyRef Name="IdDeveloper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyLocationImage_PropertyLocation">
+          <End Role="PropertyLocation" Type="Self.PropertyLocation" Multiplicity="1" />
+          <End Role="PropertyLocationImage" Type="Self.PropertyLocationImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyLocation">
+              <PropertyRef Name="IdPropertyLocation" />
+            </Principal>
+            <Dependent Role="PropertyLocationImage">
+              <PropertyRef Name="IdPropertyLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTag_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="PropertyTag" Type="Self.PropertyTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="PropertyTag">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTag_Tag">
+          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
+          <End Role="PropertyTag" Type="Self.PropertyTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="IdTag" />
+            </Principal>
+            <Dependent Role="PropertyTag">
+              <PropertyRef Name="IdTag" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTransaction_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="PropertyTransaction" Type="Self.PropertyTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="IdAgent" />
+            </Principal>
+            <Dependent Role="PropertyTransaction">
+              <PropertyRef Name="IdAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTransaction_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="PropertyTransaction" Type="Self.PropertyTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="PropertyTransaction">
+              <PropertyRef Name="IdClientBuyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTransaction_PurchasableProperty">
+          <End Role="PurchasableProperty" Type="Self.PurchasableProperty" Multiplicity="0..1" />
+          <End Role="PropertyTransaction" Type="Self.PropertyTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchasableProperty">
+              <PropertyRef Name="IdPurchasableProperty" />
+            </Principal>
+            <Dependent Role="PropertyTransaction">
+              <PropertyRef Name="IdPurchasableProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTransaction_RentalProperty">
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="0..1" />
+          <End Role="PropertyTransaction" Type="Self.PropertyTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RentalProperty">
+              <PropertyRef Name="IdRentalProperty" />
+            </Principal>
+            <Dependent Role="PropertyTransaction">
+              <PropertyRef Name="IdRentalProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasableProperty_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="PurchasableProperty" Type="Self.PurchasableProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="PurchasableProperty">
+              <PropertyRef Name="IdClientOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasableProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="PurchasableProperty" Type="Self.PurchasableProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="PurchasableProperty">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasableProperty_Realtor">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="PurchasableProperty" Type="Self.PurchasableProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="IdRealtor" />
+            </Principal>
+            <Dependent Role="PurchasableProperty">
+              <PropertyRef Name="IdRealtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentalProperty_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="RentalProperty">
+              <PropertyRef Name="IdClientOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentalProperty_PaymentPeriod">
+          <End Role="PaymentPeriod" Type="Self.PaymentPeriod" Multiplicity="1" />
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPeriod">
+              <PropertyRef Name="IdPaymentPeriod" />
+            </Principal>
+            <Dependent Role="RentalProperty">
+              <PropertyRef Name="IdPaymentPeriod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentalProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="RentalProperty">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentalProperty_Realtor">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="IdRealtor" />
+            </Principal>
+            <Dependent Role="RentalProperty">
+              <PropertyRef Name="IdRealtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CheckPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CountSalesAgentThisMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdAgent" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetAge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BirthDate" Type="date" Mode="In" />
+          <Parameter Name="Age" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="IsPropertyAvailible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+          <Parameter Name="IdProperty" Type="int" Mode="In" />
+        </Function>
+        <Function Name="PropertyArea" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+          <Parameter Name="IdProperty" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SearchProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TypeProperty" Type="nvarchar" Mode="In" />
+          <Parameter Name="YearMin" Type="int" Mode="In" />
+          <Parameter Name="YearMax" Type="int" Mode="In" />
+          <Parameter Name="RoomNumber" Type="int" Mode="In" />
+          <Parameter Name="HasParking" Type="bit" Mode="In" />
+          <Parameter Name="HasHeating" Type="bit" Mode="In" />
+          <Parameter Name="HasElevator" Type="bit" Mode="In" />
+          <Parameter Name="MinBathroomQuantity" Type="int" Mode="In" />
+          <Parameter Name="PriceTotal" Type="decimal" Mode="In" />
+          <Parameter Name="Rent" Type="decimal" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="IdProperty" Type="int" Nullable="false" />
+                <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+                <Property Name="TotalArea" Type="decimal" Precision="10" Scale="2" />
+                <Property Name="PropertyType" Type="nvarchar" MaxLength="75" />
+                <Property Name="RoomQuantity" Type="int" />
+                <Property Name="BathroomQuantity" Type="tinyint" />
+                <Property Name="HasHeating" Type="bit" />
+                <Property Name="HasParking" Type="bit" />
+                <Property Name="City" Type="nvarchar" MaxLength="75" />
+                <Property Name="YearBuilt" Type="int" />
+                <Property Name="PaymentForProperty" Type="nvarchar" MaxLength="62" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="TagsOfProperty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProperty" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Name" Type="nvarchar" MaxLength="75" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="Хранилище RealEstateAgency_MakhanovModelContainer">
+          <EntitySet Name="Agent" EntityType="Self.Agent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Developer" EntityType="Self.Developer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LivingProperty" EntityType="Self.LivingProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LivingPropertyType" EntityType="Self.LivingPropertyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NonLivingProperty" EntityType="Self.NonLivingProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NonLivingPropertyType" EntityType="Self.NonLivingPropertyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentPeriod" EntityType="Self.PaymentPeriod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyImage" EntityType="Self.PropertyImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyLocation" EntityType="Self.PropertyLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyLocationImage" EntityType="Self.PropertyLocationImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyTag" EntityType="Self.PropertyTag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyTransaction" EntityType="Self.PropertyTransaction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchasableProperty" EntityType="Self.PurchasableProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Realtor" EntityType="Self.Realtor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RentalProperty" EntityType="Self.RentalProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgentSaleView" EntityType="Self.AgentSaleView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AgentSaleView].[IdAgent] AS [IdAgent], 
+    [AgentSaleView].[AgentName] AS [AgentName], 
+    [AgentSaleView].[Gender] AS [Gender], 
+    [AgentSaleView].[Login] AS [Login], 
+    [AgentSaleView].[DateClosure] AS [DateClosure], 
+    [AgentSaleView].[TypeTransaction] AS [TypeTransaction], 
+    [AgentSaleView].[PaymentForProperty] AS [PaymentForProperty], 
+    [AgentSaleView].[BuyerName] AS [BuyerName]
+    FROM [dbo].[AgentSaleView] AS [AgentSaleView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PropertyView" EntityType="Self.PropertyView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PropertyView].[IdProperty] AS [IdProperty], 
+    [PropertyView].[PropertyName] AS [PropertyName], 
+    [PropertyView].[PropertyDescription] AS [PropertyDescription], 
+    [PropertyView].[PropertyLocationName] AS [PropertyLocationName], 
+    [PropertyView].[PropertyLocationDescription] AS [PropertyLocationDescription], 
+    [PropertyView].[YearBuilt] AS [YearBuilt], 
+    [PropertyView].[Floors] AS [Floors], 
+    [PropertyView].[HasElevator] AS [HasElevator], 
+    [PropertyView].[AreaSquareMeters] AS [AreaSquareMeters], 
+    [PropertyView].[LivingNonLivingType] AS [LivingNonLivingType], 
+    [PropertyView].[ParkingSpaces] AS [ParkingSpaces], 
+    [PropertyView].[LivingAreaSquareMeters] AS [LivingAreaSquareMeters], 
+    [PropertyView].[KitchenAreaSquareMeters] AS [KitchenAreaSquareMeters], 
+    [PropertyView].[RoomQuantity] AS [RoomQuantity], 
+    [PropertyView].[CeilingHeight] AS [CeilingHeight], 
+    [PropertyView].[FloorNumber] AS [FloorNumber], 
+    [PropertyView].[BathroomQuantity] AS [BathroomQuantity], 
+    [PropertyView].[Adress] AS [Adress], 
+    [PropertyView].[IsActive] AS [IsActive]
+    FROM [dbo].[PropertyView] AS [PropertyView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Agent_Gender" Association="Self.FK_Agent_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Agent" EntitySet="Agent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agent_User" Association="Self.FK_Agent_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Agent" EntitySet="Agent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LivingProperty_LivingPropertyType" Association="Self.FK_LivingProperty_LivingPropertyType">
+            <End Role="LivingPropertyType" EntitySet="LivingPropertyType" />
+            <End Role="LivingProperty" EntitySet="LivingProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LivingProperty_Property" Association="Self.FK_LivingProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="LivingProperty" EntitySet="LivingProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NonLivingProperty_NonLivingPropertyType" Association="Self.FK_NonLivingProperty_NonLivingPropertyType">
+            <End Role="NonLivingPropertyType" EntitySet="NonLivingPropertyType" />
+            <End Role="NonLivingProperty" EntitySet="NonLivingProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NonLivingProperty_Property" Association="Self.FK_NonLivingProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="NonLivingProperty" EntitySet="NonLivingProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_PropertyLocation" Association="Self.FK_Property_PropertyLocation">
+            <End Role="PropertyLocation" EntitySet="PropertyLocation" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyImage_Property" Association="Self.FK_PropertyImage_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PropertyImage" EntitySet="PropertyImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyLocation_Developer" Association="Self.FK_PropertyLocation_Developer">
+            <End Role="Developer" EntitySet="Developer" />
+            <End Role="PropertyLocation" EntitySet="PropertyLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyLocationImage_PropertyLocation" Association="Self.FK_PropertyLocationImage_PropertyLocation">
+            <End Role="PropertyLocation" EntitySet="PropertyLocation" />
+            <End Role="PropertyLocationImage" EntitySet="PropertyLocationImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTag_Property" Association="Self.FK_PropertyTag_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PropertyTag" EntitySet="PropertyTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTag_Tag" Association="Self.FK_PropertyTag_Tag">
+            <End Role="Tag" EntitySet="Tag" />
+            <End Role="PropertyTag" EntitySet="PropertyTag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTransaction_Agent" Association="Self.FK_PropertyTransaction_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="PropertyTransaction" EntitySet="PropertyTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTransaction_Client" Association="Self.FK_PropertyTransaction_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PropertyTransaction" EntitySet="PropertyTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTransaction_PurchasableProperty" Association="Self.FK_PropertyTransaction_PurchasableProperty">
+            <End Role="PurchasableProperty" EntitySet="PurchasableProperty" />
+            <End Role="PropertyTransaction" EntitySet="PropertyTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTransaction_RentalProperty" Association="Self.FK_PropertyTransaction_RentalProperty">
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+            <End Role="PropertyTransaction" EntitySet="PropertyTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasableProperty_Client" Association="Self.FK_PurchasableProperty_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PurchasableProperty" EntitySet="PurchasableProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasableProperty_Property" Association="Self.FK_PurchasableProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PurchasableProperty" EntitySet="PurchasableProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasableProperty_Realtor" Association="Self.FK_PurchasableProperty_Realtor">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="PurchasableProperty" EntitySet="PurchasableProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentalProperty_Client" Association="Self.FK_RentalProperty_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentalProperty_PaymentPeriod" Association="Self.FK_RentalProperty_PaymentPeriod">
+            <End Role="PaymentPeriod" EntitySet="PaymentPeriod" />
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentalProperty_Property" Association="Self.FK_RentalProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentalProperty_Realtor" Association="Self.FK_RentalProperty_Realtor">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RealEstateAgency_MakhanovModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="SearchProperty_Result">
+          <Property Name="IdProperty" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalArea" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PropertyType" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="RoomQuantity" Type="Int32" />
+          <Property Name="BathroomQuantity" Type="Byte" />
+          <Property Name="HasHeating" Type="Boolean" />
+          <Property Name="HasParking" Type="Boolean" />
+          <Property Name="City" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="YearBuilt" Type="Int32" />
+          <Property Name="PaymentForProperty" Type="String" MaxLength="62" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <ComplexType Name="TagsOfProperty_Result">
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <EntityType Name="Agent">
+          <Key>
+            <PropertyRef Name="IdAgent" />
+          </Key>
+          <Property Name="IdAgent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdUser" Type="Int32" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Agent_Gender" FromRole="Agent" ToRole="Gender" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Agent_User" FromRole="Agent" ToRole="User" />
+          <NavigationProperty Name="PropertyTransaction" Relationship="Self.FK_PropertyTransaction_Agent" FromRole="Agent" ToRole="PropertyTransaction" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrganisationName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="INN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="KPP" Type="String" MaxLength="9" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
+          <NavigationProperty Name="PropertyTransaction" Relationship="Self.FK_PropertyTransaction_Client" FromRole="Client" ToRole="PropertyTransaction" />
+          <NavigationProperty Name="PurchasableProperty" Relationship="Self.FK_PurchasableProperty_Client" FromRole="Client" ToRole="PurchasableProperty" />
+          <NavigationProperty Name="RentalProperty" Relationship="Self.FK_RentalProperty_Client" FromRole="Client" ToRole="RentalProperty" />
+        </EntityType>
+        <EntityType Name="Developer">
+          <Key>
+            <PropertyRef Name="IdDeveloper" />
+          </Key>
+          <Property Name="IdDeveloper" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PropertyLocation" Relationship="Self.FK_PropertyLocation_Developer" FromRole="Developer" ToRole="PropertyLocation" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Agent" Relationship="Self.FK_Agent_Gender" FromRole="Gender" ToRole="Agent" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Gender" FromRole="Gender" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="LivingProperty">
+          <Key>
+            <PropertyRef Name="IdLivingProperty" />
+          </Key>
+          <Property Name="IdLivingProperty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProperty" Type="Int32" Nullable="false" />
+          <Property Name="IdLivingPropertyType" Type="Int32" Nullable="false" />
+          <Property Name="SharedAreaSquareMeters" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="LivingAreaSquareMeters" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="KitchenAreaSquareMeters" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="RoomQuantity" Type="Int32" Nullable="false" />
+          <Property Name="CeilingHeight" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FloorNumber" Type="Int32" />
+          <Property Name="FloorsAmount" Type="Int32" Nullable="false" />
+          <Property Name="HasHeating" Type="Boolean" Nullable="false" />
+          <Property Name="HasParking" Type="Boolean" Nullable="false" />
+          <Property Name="BathroomQuantity" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="LivingPropertyType" Relationship="Self.FK_LivingProperty_LivingPropertyType" FromRole="LivingProperty" ToRole="LivingPropertyType" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_LivingProperty_Property" FromRole="LivingProperty" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="LivingPropertyType">
+          <Key>
+            <PropertyRef Name="IdLivingPropertyType" />
+          </Key>
+          <Property Name="IdLivingPropertyType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="LivingProperty" Relationship="Self.FK_LivingProperty_LivingPropertyType" FromRole="LivingPropertyType" ToRole="LivingProperty" />
+        </EntityType>
+        <EntityType Name="NonLivingProperty">
+          <Key>
+            <PropertyRef Name="IdNonLivingProperty" />
+          </Key>
+          <Property Name="IdNonLivingProperty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProperty" Type="Int32" Nullable="false" />
+          <Property Name="IdNonLivingPropertyType" Type="Int32" Nullable="false" />
+          <Property Name="AreaSquareMeters" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="ParkingSpaces" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NonLivingPropertyType" Relationship="Self.FK_NonLivingProperty_NonLivingPropertyType" FromRole="NonLivingProperty" ToRole="NonLivingPropertyType" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_NonLivingProperty_Property" FromRole="NonLivingProperty" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="NonLivingPropertyType">
+          <Key>
+            <PropertyRef Name="IdNonLivingProperty" />
+          </Key>
+          <Property Name="IdNonLivingProperty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NonLivingProperty" Relationship="Self.FK_NonLivingProperty_NonLivingPropertyType" FromRole="NonLivingPropertyType" ToRole="NonLivingProperty" />
+        </EntityType>
+        <EntityType Name="PaymentPeriod">
+          <Key>
+            <PropertyRef Name="IdPaymentPeriod" />
+          </Key>
+          <Property Name="IdPaymentPeriod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Days" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RentalProperty" Relationship="Self.FK_RentalProperty_PaymentPeriod" FromRole="PaymentPeriod" ToRole="RentalProperty" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="IdProperty" />
+          </Key>
+          <Property Name="IdProperty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="IdPropertyLocation" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="LivingProperty" Relationship="Self.FK_LivingProperty_Property" FromRole="Property" ToRole="LivingProperty" />
+          <NavigationProperty Name="NonLivingProperty" Relationship="Self.FK_NonLivingProperty_Property" FromRole="Property" ToRole="NonLivingProperty" />
+          <NavigationProperty Name="PropertyLocation" Relationship="Self.FK_Property_PropertyLocation" FromRole="Property" ToRole="PropertyLocation" />
+          <NavigationProperty Name="PropertyImage" Relationship="Self.FK_PropertyImage_Property" FromRole="Property" ToRole="PropertyImage" />
+          <NavigationProperty Name="PurchasableProperty" Relationship="Self.FK_PurchasableProperty_Property" FromRole="Property" ToRole="PurchasableProperty" />
+          <NavigationProperty Name="RentalProperty" Relationship="Self.FK_RentalProperty_Property" FromRole="Property" ToRole="RentalProperty" />
+          <NavigationProperty Name="Tag" Relationship="Self.PropertyTag" FromRole="Property" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="PropertyImage">
+          <Key>
+            <PropertyRef Name="IdPropertyImage" />
+          </Key>
+          <Property Name="IdPropertyImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProperty" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_PropertyImage_Property" FromRole="PropertyImage" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="PropertyLocation">
+          <Key>
+            <PropertyRef Name="IdPropertyLocation" />
+          </Key>
+          <Property Name="IdPropertyLocation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="House" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="YearBuilt" Type="Int32" Nullable="false" />
+          <Property Name="Floors" Type="Int32" Nullable="false" />
+          <Property Name="HasElevator" Type="Boolean" Nullable="false" />
+          <Property Name="IdDeveloper" Type="Int32" />
+          <NavigationProperty Name="Developer" Relationship="Self.FK_PropertyLocation_Developer" FromRole="PropertyLocation" ToRole="Developer" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_Property_PropertyLocation" FromRole="PropertyLocation" ToRole="Property" />
+          <NavigationProperty Name="PropertyLocationImage" Relationship="Self.FK_PropertyLocationImage_PropertyLocation" FromRole="PropertyLocation" ToRole="PropertyLocationImage" />
+        </EntityType>
+        <EntityType Name="PropertyLocationImage">
+          <Key>
+            <PropertyRef Name="IdPropertyLocationImage" />
+          </Key>
+          <Property Name="IdPropertyLocationImage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPropertyLocation" Type="Int32" Nullable="false" />
+          <Property Name="Image" Type="String" MaxLength="2048" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PropertyLocation" Relationship="Self.FK_PropertyLocationImage_PropertyLocation" FromRole="PropertyLocationImage" ToRole="PropertyLocation" />
+        </EntityType>
+        <EntityType Name="PropertyTransaction">
+          <Key>
+            <PropertyRef Name="IdPropertyTransaction" />
+          </Key>
+          <Property Name="IdPropertyTransaction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClientBuyer" Type="Int32" Nullable="false" />
+          <Property Name="IdPurchasableProperty" Type="Int32" />
+          <Property Name="IdRentalProperty" Type="Int32" />
+          <Property Name="IsMortgaged" Type="Boolean" Nullable="false" />
+          <Property Name="DateClosure" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdAgent" Type="Int32" />
+          <NavigationProperty Name="Agent" Relationship="Self.FK_PropertyTransaction_Agent" FromRole="PropertyTransaction" ToRole="Agent" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_PropertyTransaction_Client" FromRole="PropertyTransaction" ToRole="Client" />
+          <NavigationProperty Name="PurchasableProperty" Relationship="Self.FK_PropertyTransaction_PurchasableProperty" FromRole="PropertyTransaction" ToRole="PurchasableProperty" />
+          <NavigationProperty Name="RentalProperty" Relationship="Self.FK_PropertyTransaction_RentalProperty" FromRole="PropertyTransaction" ToRole="RentalProperty" />
+        </EntityType>
+        <EntityType Name="PurchasableProperty">
+          <Key>
+            <PropertyRef Name="IdPurchasableProperty" />
+          </Key>
+          <Property Name="IdPurchasableProperty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProperty" Type="Int32" Nullable="false" />
+          <Property Name="IdClientOwner" Type="Int32" />
+          <Property Name="IdRealtor" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_PurchasableProperty_Client" FromRole="PurchasableProperty" ToRole="Client" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_PurchasableProperty_Property" FromRole="PurchasableProperty" ToRole="Property" />
+          <NavigationProperty Name="PropertyTransaction" Relationship="Self.FK_PropertyTransaction_PurchasableProperty" FromRole="PurchasableProperty" ToRole="PropertyTransaction" />
+          <NavigationProperty Name="Realtor" Relationship="Self.FK_PurchasableProperty_Realtor" FromRole="PurchasableProperty" ToRole="Realtor" />
+        </EntityType>
+        <EntityType Name="Realtor">
+          <Key>
+            <PropertyRef Name="IdRealtor" />
+          </Key>
+          <Property Name="IdRealtor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PurchasableProperty" Relationship="Self.FK_PurchasableProperty_Realtor" FromRole="Realtor" ToRole="PurchasableProperty" />
+          <NavigationProperty Name="RentalProperty" Relationship="Self.FK_RentalProperty_Realtor" FromRole="Realtor" ToRole="RentalProperty" />
+        </EntityType>
+        <EntityType Name="RentalProperty">
+          <Key>
+            <PropertyRef Name="IdRentalProperty" />
+          </Key>
+          <Property Name="IdRentalProperty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProperty" Type="Int32" Nullable="false" />
+          <Property Name="IdClientOwner" Type="Int32" />
+          <Property Name="IdRealtor" Type="Int32" />
+          <Property Name="Rent" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IdPaymentPeriod" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_RentalProperty_Client" FromRole="RentalProperty" ToRole="Client" />
+          <NavigationProperty Name="PaymentPeriod" Relationship="Self.FK_RentalProperty_PaymentPeriod" FromRole="RentalProperty" ToRole="PaymentPeriod" />
+          <NavigationProperty Name="Property" Relationship="Self.FK_RentalProperty_Property" FromRole="RentalProperty" ToRole="Property" />
+          <NavigationProperty Name="PropertyTransaction" Relationship="Self.FK_PropertyTransaction_RentalProperty" FromRole="RentalProperty" ToRole="PropertyTransaction" />
+          <NavigationProperty Name="Realtor" Relationship="Self.FK_RentalProperty_Realtor" FromRole="RentalProperty" ToRole="Realtor" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="IdTag" />
+          </Key>
+          <Property Name="IdTag" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Property" Relationship="Self.PropertyTag" FromRole="Tag" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Agent" Relationship="Self.FK_Agent_User" FromRole="User" ToRole="Agent" />
+        </EntityType>
+        <EntityType Name="AgentSaleView">
+          <Key>
+            <PropertyRef Name="AgentName" />
+            <PropertyRef Name="DateClosure" />
+            <PropertyRef Name="TypeTransaction" />
+            <PropertyRef Name="BuyerName" />
+          </Key>
+          <Property Name="IdAgent" Type="Int32" />
+          <Property Name="AgentName" Type="String" MaxLength="227" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateClosure" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TypeTransaction" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PaymentForProperty" Type="String" MaxLength="62" FixedLength="false" Unicode="true" />
+          <Property Name="BuyerName" Type="String" MaxLength="227" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyView">
+          <Key>
+            <PropertyRef Name="HasElevator" />
+            <PropertyRef Name="Adress" />
+          </Key>
+          <Property Name="IdProperty" Type="Int32" />
+          <Property Name="PropertyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyLocationName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="PropertyLocationDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="YearBuilt" Type="Int32" />
+          <Property Name="Floors" Type="Int32" />
+          <Property Name="HasElevator" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AreaSquareMeters" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="LivingNonLivingType" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="ParkingSpaces" Type="Int32" />
+          <Property Name="LivingAreaSquareMeters" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="KitchenAreaSquareMeters" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="RoomQuantity" Type="Int32" />
+          <Property Name="CeilingHeight" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="FloorNumber" Type="Int32" />
+          <Property Name="BathroomQuantity" Type="Byte" />
+          <Property Name="Adress" Type="String" MaxLength="254" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_Agent_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agent_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Agent" Type="Self.Agent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="Agent">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTransaction_Agent">
+          <End Role="Agent" Type="Self.Agent" Multiplicity="0..1" />
+          <End Role="PropertyTransaction" Type="Self.PropertyTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agent">
+              <PropertyRef Name="IdAgent" />
+            </Principal>
+            <Dependent Role="PropertyTransaction">
+              <PropertyRef Name="IdAgent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTransaction_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="PropertyTransaction" Type="Self.PropertyTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="PropertyTransaction">
+              <PropertyRef Name="IdClientBuyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasableProperty_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="PurchasableProperty" Type="Self.PurchasableProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="PurchasableProperty">
+              <PropertyRef Name="IdClientOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentalProperty_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="RentalProperty">
+              <PropertyRef Name="IdClientOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyLocation_Developer">
+          <End Role="Developer" Type="Self.Developer" Multiplicity="0..1" />
+          <End Role="PropertyLocation" Type="Self.PropertyLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Developer">
+              <PropertyRef Name="IdDeveloper" />
+            </Principal>
+            <Dependent Role="PropertyLocation">
+              <PropertyRef Name="IdDeveloper" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LivingProperty_LivingPropertyType">
+          <End Role="LivingPropertyType" Type="Self.LivingPropertyType" Multiplicity="1" />
+          <End Role="LivingProperty" Type="Self.LivingProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LivingPropertyType">
+              <PropertyRef Name="IdLivingPropertyType" />
+            </Principal>
+            <Dependent Role="LivingProperty">
+              <PropertyRef Name="IdLivingPropertyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LivingProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="LivingProperty" Type="Self.LivingProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="LivingProperty">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NonLivingProperty_NonLivingPropertyType">
+          <End Role="NonLivingPropertyType" Type="Self.NonLivingPropertyType" Multiplicity="1" />
+          <End Role="NonLivingProperty" Type="Self.NonLivingProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NonLivingPropertyType">
+              <PropertyRef Name="IdNonLivingProperty" />
+            </Principal>
+            <Dependent Role="NonLivingProperty">
+              <PropertyRef Name="IdNonLivingPropertyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NonLivingProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="NonLivingProperty" Type="Self.NonLivingProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="NonLivingProperty">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentalProperty_PaymentPeriod">
+          <End Role="PaymentPeriod" Type="Self.PaymentPeriod" Multiplicity="1" />
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentPeriod">
+              <PropertyRef Name="IdPaymentPeriod" />
+            </Principal>
+            <Dependent Role="RentalProperty">
+              <PropertyRef Name="IdPaymentPeriod" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_PropertyLocation">
+          <End Role="PropertyLocation" Type="Self.PropertyLocation" Multiplicity="1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyLocation">
+              <PropertyRef Name="IdPropertyLocation" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="IdPropertyLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyImage_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="PropertyImage" Type="Self.PropertyImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="PropertyImage">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasableProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="PurchasableProperty" Type="Self.PurchasableProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="PurchasableProperty">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentalProperty_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="IdProperty" />
+            </Principal>
+            <Dependent Role="RentalProperty">
+              <PropertyRef Name="IdProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyLocationImage_PropertyLocation">
+          <End Role="PropertyLocation" Type="Self.PropertyLocation" Multiplicity="1" />
+          <End Role="PropertyLocationImage" Type="Self.PropertyLocationImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyLocation">
+              <PropertyRef Name="IdPropertyLocation" />
+            </Principal>
+            <Dependent Role="PropertyLocationImage">
+              <PropertyRef Name="IdPropertyLocation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTransaction_PurchasableProperty">
+          <End Role="PurchasableProperty" Type="Self.PurchasableProperty" Multiplicity="0..1" />
+          <End Role="PropertyTransaction" Type="Self.PropertyTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchasableProperty">
+              <PropertyRef Name="IdPurchasableProperty" />
+            </Principal>
+            <Dependent Role="PropertyTransaction">
+              <PropertyRef Name="IdPurchasableProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyTransaction_RentalProperty">
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="0..1" />
+          <End Role="PropertyTransaction" Type="Self.PropertyTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RentalProperty">
+              <PropertyRef Name="IdRentalProperty" />
+            </Principal>
+            <Dependent Role="PropertyTransaction">
+              <PropertyRef Name="IdRentalProperty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchasableProperty_Realtor">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="PurchasableProperty" Type="Self.PurchasableProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="IdRealtor" />
+            </Principal>
+            <Dependent Role="PurchasableProperty">
+              <PropertyRef Name="IdRealtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RentalProperty_Realtor">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="RentalProperty" Type="Self.RentalProperty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="IdRealtor" />
+            </Principal>
+            <Dependent Role="RentalProperty">
+              <PropertyRef Name="IdRealtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PropertyTag">
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <End Role="Tag" Type="Self.Tag" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agent" EntityType="Self.Agent" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Developer" EntityType="Self.Developer" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="LivingProperty" EntityType="Self.LivingProperty" />
+          <EntitySet Name="LivingPropertyType" EntityType="Self.LivingPropertyType" />
+          <EntitySet Name="NonLivingProperty" EntityType="Self.NonLivingProperty" />
+          <EntitySet Name="NonLivingPropertyType" EntityType="Self.NonLivingPropertyType" />
+          <EntitySet Name="PaymentPeriod" EntityType="Self.PaymentPeriod" />
+          <EntitySet Name="Property" EntityType="Self.Property" />
+          <EntitySet Name="PropertyImage" EntityType="Self.PropertyImage" />
+          <EntitySet Name="PropertyLocation" EntityType="Self.PropertyLocation" />
+          <EntitySet Name="PropertyLocationImage" EntityType="Self.PropertyLocationImage" />
+          <EntitySet Name="PropertyTransaction" EntityType="Self.PropertyTransaction" />
+          <EntitySet Name="PurchasableProperty" EntityType="Self.PurchasableProperty" />
+          <EntitySet Name="Realtor" EntityType="Self.Realtor" />
+          <EntitySet Name="RentalProperty" EntityType="Self.RentalProperty" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Tag" EntityType="Self.Tag" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="AgentSaleView" EntityType="Self.AgentSaleView" />
+          <EntitySet Name="PropertyView" EntityType="Self.PropertyView" />
+          <AssociationSet Name="FK_Agent_Gender" Association="Self.FK_Agent_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Agent" EntitySet="Agent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agent_User" Association="Self.FK_Agent_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Agent" EntitySet="Agent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTransaction_Agent" Association="Self.FK_PropertyTransaction_Agent">
+            <End Role="Agent" EntitySet="Agent" />
+            <End Role="PropertyTransaction" EntitySet="PropertyTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTransaction_Client" Association="Self.FK_PropertyTransaction_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PropertyTransaction" EntitySet="PropertyTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasableProperty_Client" Association="Self.FK_PurchasableProperty_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="PurchasableProperty" EntitySet="PurchasableProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentalProperty_Client" Association="Self.FK_RentalProperty_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyLocation_Developer" Association="Self.FK_PropertyLocation_Developer">
+            <End Role="Developer" EntitySet="Developer" />
+            <End Role="PropertyLocation" EntitySet="PropertyLocation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LivingProperty_LivingPropertyType" Association="Self.FK_LivingProperty_LivingPropertyType">
+            <End Role="LivingPropertyType" EntitySet="LivingPropertyType" />
+            <End Role="LivingProperty" EntitySet="LivingProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LivingProperty_Property" Association="Self.FK_LivingProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="LivingProperty" EntitySet="LivingProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NonLivingProperty_NonLivingPropertyType" Association="Self.FK_NonLivingProperty_NonLivingPropertyType">
+            <End Role="NonLivingPropertyType" EntitySet="NonLivingPropertyType" />
+            <End Role="NonLivingProperty" EntitySet="NonLivingProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NonLivingProperty_Property" Association="Self.FK_NonLivingProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="NonLivingProperty" EntitySet="NonLivingProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentalProperty_PaymentPeriod" Association="Self.FK_RentalProperty_PaymentPeriod">
+            <End Role="PaymentPeriod" EntitySet="PaymentPeriod" />
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_PropertyLocation" Association="Self.FK_Property_PropertyLocation">
+            <End Role="PropertyLocation" EntitySet="PropertyLocation" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyImage_Property" Association="Self.FK_PropertyImage_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PropertyImage" EntitySet="PropertyImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasableProperty_Property" Association="Self.FK_PurchasableProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PurchasableProperty" EntitySet="PurchasableProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentalProperty_Property" Association="Self.FK_RentalProperty_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyLocationImage_PropertyLocation" Association="Self.FK_PropertyLocationImage_PropertyLocation">
+            <End Role="PropertyLocation" EntitySet="PropertyLocation" />
+            <End Role="PropertyLocationImage" EntitySet="PropertyLocationImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTransaction_PurchasableProperty" Association="Self.FK_PropertyTransaction_PurchasableProperty">
+            <End Role="PurchasableProperty" EntitySet="PurchasableProperty" />
+            <End Role="PropertyTransaction" EntitySet="PropertyTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyTransaction_RentalProperty" Association="Self.FK_PropertyTransaction_RentalProperty">
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+            <End Role="PropertyTransaction" EntitySet="PropertyTransaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchasableProperty_Realtor" Association="Self.FK_PurchasableProperty_Realtor">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="PurchasableProperty" EntitySet="PurchasableProperty" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RentalProperty_Realtor" Association="Self.FK_RentalProperty_Realtor">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="RentalProperty" EntitySet="RentalProperty" />
+          </AssociationSet>
+          <AssociationSet Name="PropertyTag" Association="Self.PropertyTag">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Tag" EntitySet="Tag" />
+          </AssociationSet>
+          <FunctionImport Name="SearchProperty" IsComposable="true" ReturnType="Collection(RealEstateAgency_MakhanovModel.SearchProperty_Result)">
+            <Parameter Name="TypeProperty" Mode="In" Type="String" />
+            <Parameter Name="YearMin" Mode="In" Type="Int32" />
+            <Parameter Name="YearMax" Mode="In" Type="Int32" />
+            <Parameter Name="RoomNumber" Mode="In" Type="Int32" />
+            <Parameter Name="HasParking" Mode="In" Type="Boolean" />
+            <Parameter Name="HasHeating" Mode="In" Type="Boolean" />
+            <Parameter Name="HasElevator" Mode="In" Type="Boolean" />
+            <Parameter Name="MinBathroomQuantity" Mode="In" Type="Int32" />
+            <Parameter Name="PriceTotal" Mode="In" Type="Decimal" />
+            <Parameter Name="Rent" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="TagsOfProperty" IsComposable="true" ReturnType="Collection(RealEstateAgency_MakhanovModel.TagsOfProperty_Result)">
+            <Parameter Name="IdProperty" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CheckPrice">
+            <Parameter Name="IdProp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CountSalesAgentThisMonth">
+            <Parameter Name="IdAgent" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetAge">
+            <Parameter Name="BirthDate" Mode="In" Type="DateTime" />
+            <Parameter Name="Age" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(RealEstateAgency_MakhanovModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(RealEstateAgency_MakhanovModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище RealEstateAgency_MakhanovModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Agent">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.Agent">
+              <MappingFragment StoreEntitySet="Agent">
+                <ScalarProperty Name="IdAgent" ColumnName="IdAgent" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="OrganisationName" ColumnName="OrganisationName" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="KPP" ColumnName="KPP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Developer">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.Developer">
+              <MappingFragment StoreEntitySet="Developer">
+                <ScalarProperty Name="IdDeveloper" ColumnName="IdDeveloper" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LivingProperty">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.LivingProperty">
+              <MappingFragment StoreEntitySet="LivingProperty">
+                <ScalarProperty Name="IdLivingProperty" ColumnName="IdLivingProperty" />
+                <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
+                <ScalarProperty Name="IdLivingPropertyType" ColumnName="IdLivingPropertyType" />
+                <ScalarProperty Name="SharedAreaSquareMeters" ColumnName="SharedAreaSquareMeters" />
+                <ScalarProperty Name="LivingAreaSquareMeters" ColumnName="LivingAreaSquareMeters" />
+                <ScalarProperty Name="KitchenAreaSquareMeters" ColumnName="KitchenAreaSquareMeters" />
+                <ScalarProperty Name="RoomQuantity" ColumnName="RoomQuantity" />
+                <ScalarProperty Name="CeilingHeight" ColumnName="CeilingHeight" />
+                <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
+                <ScalarProperty Name="FloorsAmount" ColumnName="FloorsAmount" />
+                <ScalarProperty Name="HasHeating" ColumnName="HasHeating" />
+                <ScalarProperty Name="HasParking" ColumnName="HasParking" />
+                <ScalarProperty Name="BathroomQuantity" ColumnName="BathroomQuantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LivingPropertyType">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.LivingPropertyType">
+              <MappingFragment StoreEntitySet="LivingPropertyType">
+                <ScalarProperty Name="IdLivingPropertyType" ColumnName="IdLivingPropertyType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NonLivingProperty">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.NonLivingProperty">
+              <MappingFragment StoreEntitySet="NonLivingProperty">
+                <ScalarProperty Name="IdNonLivingProperty" ColumnName="IdNonLivingProperty" />
+                <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
+                <ScalarProperty Name="IdNonLivingPropertyType" ColumnName="IdNonLivingPropertyType" />
+                <ScalarProperty Name="AreaSquareMeters" ColumnName="AreaSquareMeters" />
+                <ScalarProperty Name="ParkingSpaces" ColumnName="ParkingSpaces" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NonLivingPropertyType">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.NonLivingPropertyType">
+              <MappingFragment StoreEntitySet="NonLivingPropertyType">
+                <ScalarProperty Name="IdNonLivingProperty" ColumnName="IdNonLivingProperty" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentPeriod">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.PaymentPeriod">
+              <MappingFragment StoreEntitySet="PaymentPeriod">
+                <ScalarProperty Name="IdPaymentPeriod" ColumnName="IdPaymentPeriod" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Days" ColumnName="Days" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Property">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IdPropertyLocation" ColumnName="IdPropertyLocation" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyImage">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.PropertyImage">
+              <MappingFragment StoreEntitySet="PropertyImage">
+                <ScalarProperty Name="IdPropertyImage" ColumnName="IdPropertyImage" />
+                <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyLocation">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.PropertyLocation">
+              <MappingFragment StoreEntitySet="PropertyLocation">
+                <ScalarProperty Name="IdPropertyLocation" ColumnName="IdPropertyLocation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="House" ColumnName="House" />
+                <ScalarProperty Name="YearBuilt" ColumnName="YearBuilt" />
+                <ScalarProperty Name="Floors" ColumnName="Floors" />
+                <ScalarProperty Name="HasElevator" ColumnName="HasElevator" />
+                <ScalarProperty Name="IdDeveloper" ColumnName="IdDeveloper" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyLocationImage">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.PropertyLocationImage">
+              <MappingFragment StoreEntitySet="PropertyLocationImage">
+                <ScalarProperty Name="IdPropertyLocationImage" ColumnName="IdPropertyLocationImage" />
+                <ScalarProperty Name="IdPropertyLocation" ColumnName="IdPropertyLocation" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyTransaction">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.PropertyTransaction">
+              <MappingFragment StoreEntitySet="PropertyTransaction">
+                <ScalarProperty Name="IdPropertyTransaction" ColumnName="IdPropertyTransaction" />
+                <ScalarProperty Name="IdClientBuyer" ColumnName="IdClientBuyer" />
+                <ScalarProperty Name="IdPurchasableProperty" ColumnName="IdPurchasableProperty" />
+                <ScalarProperty Name="IdRentalProperty" ColumnName="IdRentalProperty" />
+                <ScalarProperty Name="IsMortgaged" ColumnName="IsMortgaged" />
+                <ScalarProperty Name="DateClosure" ColumnName="DateClosure" />
+                <ScalarProperty Name="IdAgent" ColumnName="IdAgent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchasableProperty">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.PurchasableProperty">
+              <MappingFragment StoreEntitySet="PurchasableProperty">
+                <ScalarProperty Name="IdPurchasableProperty" ColumnName="IdPurchasableProperty" />
+                <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
+                <ScalarProperty Name="IdClientOwner" ColumnName="IdClientOwner" />
+                <ScalarProperty Name="IdRealtor" ColumnName="IdRealtor" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Realtor">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.Realtor">
+              <MappingFragment StoreEntitySet="Realtor">
+                <ScalarProperty Name="IdRealtor" ColumnName="IdRealtor" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RentalProperty">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.RentalProperty">
+              <MappingFragment StoreEntitySet="RentalProperty">
+                <ScalarProperty Name="IdRentalProperty" ColumnName="IdRentalProperty" />
+                <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
+                <ScalarProperty Name="IdClientOwner" ColumnName="IdClientOwner" />
+                <ScalarProperty Name="IdRealtor" ColumnName="IdRealtor" />
+                <ScalarProperty Name="Rent" ColumnName="Rent" />
+                <ScalarProperty Name="IdPaymentPeriod" ColumnName="IdPaymentPeriod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tag">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.Tag">
+              <MappingFragment StoreEntitySet="Tag">
+                <ScalarProperty Name="IdTag" ColumnName="IdTag" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AgentSaleView">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.AgentSaleView">
+              <MappingFragment StoreEntitySet="AgentSaleView">
+                <ScalarProperty Name="IdAgent" ColumnName="IdAgent" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="DateClosure" ColumnName="DateClosure" />
+                <ScalarProperty Name="TypeTransaction" ColumnName="TypeTransaction" />
+                <ScalarProperty Name="PaymentForProperty" ColumnName="PaymentForProperty" />
+                <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyView">
+            <EntityTypeMapping TypeName="RealEstateAgency_MakhanovModel.PropertyView">
+              <MappingFragment StoreEntitySet="PropertyView">
+                <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="PropertyDescription" ColumnName="PropertyDescription" />
+                <ScalarProperty Name="PropertyLocationName" ColumnName="PropertyLocationName" />
+                <ScalarProperty Name="PropertyLocationDescription" ColumnName="PropertyLocationDescription" />
+                <ScalarProperty Name="YearBuilt" ColumnName="YearBuilt" />
+                <ScalarProperty Name="Floors" ColumnName="Floors" />
+                <ScalarProperty Name="HasElevator" ColumnName="HasElevator" />
+                <ScalarProperty Name="AreaSquareMeters" ColumnName="AreaSquareMeters" />
+                <ScalarProperty Name="LivingNonLivingType" ColumnName="LivingNonLivingType" />
+                <ScalarProperty Name="ParkingSpaces" ColumnName="ParkingSpaces" />
+                <ScalarProperty Name="LivingAreaSquareMeters" ColumnName="LivingAreaSquareMeters" />
+                <ScalarProperty Name="KitchenAreaSquareMeters" ColumnName="KitchenAreaSquareMeters" />
+                <ScalarProperty Name="RoomQuantity" ColumnName="RoomQuantity" />
+                <ScalarProperty Name="CeilingHeight" ColumnName="CeilingHeight" />
+                <ScalarProperty Name="FloorNumber" ColumnName="FloorNumber" />
+                <ScalarProperty Name="BathroomQuantity" ColumnName="BathroomQuantity" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PropertyTag" TypeName="RealEstateAgency_MakhanovModel.PropertyTag" StoreEntitySet="PropertyTag">
+            <EndProperty Name="Property">
+              <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
+            </EndProperty>
+            <EndProperty Name="Tag">
+              <ScalarProperty Name="IdTag" ColumnName="IdTag" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionName="Хранилище RealEstateAgency_MakhanovModel.SearchProperty" FunctionImportName="SearchProperty">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RealEstateAgency_MakhanovModel.SearchProperty_Result">
+                <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TotalArea" ColumnName="TotalArea" />
+                <ScalarProperty Name="PropertyType" ColumnName="PropertyType" />
+                <ScalarProperty Name="RoomQuantity" ColumnName="RoomQuantity" />
+                <ScalarProperty Name="BathroomQuantity" ColumnName="BathroomQuantity" />
+                <ScalarProperty Name="HasHeating" ColumnName="HasHeating" />
+                <ScalarProperty Name="HasParking" ColumnName="HasParking" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="YearBuilt" ColumnName="YearBuilt" />
+                <ScalarProperty Name="PaymentForProperty" ColumnName="PaymentForProperty" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="Хранилище RealEstateAgency_MakhanovModel.TagsOfProperty" FunctionImportName="TagsOfProperty">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RealEstateAgency_MakhanovModel.TagsOfProperty_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CheckPrice" FunctionName="Хранилище RealEstateAgency_MakhanovModel.CheckPrice" />
+          <FunctionImportMapping FunctionImportName="CountSalesAgentThisMonth" FunctionName="Хранилище RealEstateAgency_MakhanovModel.CountSalesAgentThisMonth" />
+          <FunctionImportMapping FunctionImportName="GetAge" FunctionName="Хранилище RealEstateAgency_MakhanovModel.GetAge" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище RealEstateAgency_MakhanovModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище RealEstateAgency_MakhanovModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище RealEstateAgency_MakhanovModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище RealEstateAgency_MakhanovModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RealEstateAgency_MakhanovModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище RealEstateAgency_MakhanovModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RealEstateAgency_MakhanovModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище RealEstateAgency_MakhanovModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище RealEstateAgency_MakhanovModel.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

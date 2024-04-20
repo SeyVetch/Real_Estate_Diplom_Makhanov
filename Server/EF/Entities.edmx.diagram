@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="47f90b40bf6249f692c665486814e780" Name="Diagram1">
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.Agent" Width="1.5" PointX="10.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.Client" Width="1.5" PointX="8.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.Developer" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.Gender" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.LivingProperty" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.LivingPropertyType" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.NonLivingProperty" Width="1.5" PointX="10.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.NonLivingPropertyType" Width="1.5" PointX="8.25" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.PaymentPeriod" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.Property" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.PropertyImage" Width="1.5" PointX="7.5" PointY="17.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.PropertyLocation" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.PropertyLocationImage" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.PropertyTransaction" Width="1.5" PointX="12.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.PurchasableProperty" Width="1.5" PointX="10.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.Realtor" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.RentalProperty" Width="1.5" PointX="10.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.Tag" Width="1.5" PointX="7.5" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.User" Width="1.5" PointX="8.25" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.AgentSaleView" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RealEstateAgency_MakhanovModel.PropertyView" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_Agent_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_Agent_User" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PropertyTransaction_Agent" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_Client_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PropertyTransaction_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PurchasableProperty_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_RentalProperty_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PropertyLocation_Developer" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_LivingProperty_LivingPropertyType" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_LivingProperty_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_NonLivingProperty_NonLivingPropertyType" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_NonLivingProperty_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_RentalProperty_PaymentPeriod" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_Property_PropertyLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PropertyImage_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PurchasableProperty_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_RentalProperty_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PropertyLocationImage_PropertyLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PropertyTransaction_PurchasableProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PropertyTransaction_RentalProperty" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_PurchasableProperty_Realtor" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.FK_RentalProperty_Realtor" ManuallyRouted="false" />
+        <AssociationConnector Association="RealEstateAgency_MakhanovModel.PropertyTag" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
