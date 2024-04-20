@@ -78,7 +78,7 @@ namespace Real_Estate_Diplom_Makhanov.Pages
             }
             else
             {
-                p = p.Where(i => i.).ToArray();
+                p = p.Where().ToArray();
             }
             LvProperty.ItemsSource = p;
         }
